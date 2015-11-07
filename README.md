@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 GRAMMAR GUILLOTINE
 
 Description: The hangmen game with a little visual twist; instead of a hanged man a guillotine slowly sliding down. Guess the right letters and stay alive for another game.
@@ -18,3 +19,8 @@ Features:
 - remember settings and game progress on exit
 - music and sound effects
 - win / lose screen (some image and sound/music)
+=======
+# evil-hangmen
+
+In a hour
+>>>>>>> origin/master
