@@ -10,8 +10,10 @@ import UIKit
 
 struct GlobalVariables {
     static var letter : String = ""
-    static var word : NSString = ""
+    static var word : String = ""
     static var displayWord : String = ""
+    static var wordLength : Int = 1
+    
     static var numberOfTurns : Int = 10
     static var wordListN : [String] = []
 }

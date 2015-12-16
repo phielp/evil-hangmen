@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F736DEB31C1B1062006E5BED /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F736DEB21C1B1062006E5BED /* Settings.swift */; };
 		F770C5981C10544F004ED07C /* BladeChop.aif in Resources */ = {isa = PBXBuildFile; fileRef = F770C5941C10542B004ED07C /* BladeChop.aif */; };
 		F770C5991C105451004ED07C /* BladeDrag.aif in Resources */ = {isa = PBXBuildFile; fileRef = F770C5951C10542C004ED07C /* BladeDrag.aif */; };
 		F788D5311C0F78E800813B2A /* Blade-0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F788D5221C0F78E800813B2A /* Blade-0.jpg */; };
@@ -65,6 +66,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F736DEB21C1B1062006E5BED /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		F770C5941C10542B004ED07C /* BladeChop.aif */ = {isa = PBXFileReference; lastKnownFileType = file; name = BladeChop.aif; path = Media/Sounds/BladeChop.aif; sourceTree = "<group>"; };
 		F770C5951C10542C004ED07C /* BladeDrag.aif */ = {isa = PBXFileReference; lastKnownFileType = file; name = BladeDrag.aif; path = Media/Sounds/BladeDrag.aif; sourceTree = "<group>"; };
 		F788D5221C0F78E800813B2A /* Blade-0.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Blade-0.jpg"; path = "Media/Images/Blade-0.jpg"; sourceTree = "<group>"; };
@@ -171,11 +173,12 @@
 			children = (
 				F7B771031C0D99A0002B6681 /* AppDelegate.swift */,
 				F7B771051C0D99A0002B6681 /* ViewController.swift */,
-				F7F77A221C0F42DE008BC010 /* GlobalVariables.swift */,
 				F7B771331C0D9A0B002B6681 /* GoodGameplay.swift */,
+				F7B771351C0D9A37002B6681 /* EvilGameplay.swift */,
+				F736DEB21C1B1062006E5BED /* Settings.swift */,
+				F7F77A221C0F42DE008BC010 /* GlobalVariables.swift */,
 				F7B771311C0D99D6002B6681 /* SecondViewController.swift */,
 				F7B771371C0D9A54002B6681 /* Gameplay.swift */,
-				F7B771351C0D9A37002B6681 /* EvilGameplay.swift */,
 				F7B771071C0D99A0002B6681 /* Main.storyboard */,
 				F7B7710A1C0D99A0002B6681 /* Assets.xcassets */,
 				F7B7710C1C0D99A0002B6681 /* LaunchScreen.storyboard */,
@@ -413,6 +416,7 @@
 			files = (
 				F7B771321C0D99D6002B6681 /* SecondViewController.swift in Sources */,
 				F7B771381C0D9A54002B6681 /* Gameplay.swift in Sources */,
+				F736DEB31C1B1062006E5BED /* Settings.swift in Sources */,
 				F7B771061C0D99A0002B6681 /* ViewController.swift in Sources */,
 				F7B771341C0D9A0B002B6681 /* GoodGameplay.swift in Sources */,
 				F7F77A231C0F42DE008BC010 /* GlobalVariables.swift in Sources */,

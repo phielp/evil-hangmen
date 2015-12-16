@@ -11,17 +11,21 @@ import Foundation
 import AVFoundation
 
 class ViewController: UIViewController {
-    
+
+    //IMAGES\\
     var animationImages: [UIImage?] = []
     var faultImages: [UIImage?] = []
     
+    //SOUNDS\\
     var bladeSound : AVAudioPlayer?
     var chopSound : AVAudioPlayer?
     
-    
+    //OUTLETS\\
     @IBOutlet weak var letterInput: UITextField!
     
     @IBOutlet weak var imageView: UIImageView!
+    
+    @IBOutlet weak var wordDisplay: UILabel!
     
     // test evil gameplay (EW)
     @IBAction func evilGamePlay(sender: AnyObject) {
@@ -35,7 +39,6 @@ class ViewController: UIViewController {
         EvilGameplay().countOccurences()
     }
     
-    
     // test animation button (PIC)
     @IBAction func startAnimation(sender: AnyObject) {
         changeImage()
@@ -44,26 +47,50 @@ class ViewController: UIViewController {
     
     // generate random word good gameplay (GW)
     @IBAction func randomWordButton(sender: AnyObject) {
-        GlobalVariables.word = GoodGameplay().pickRandomWord()
-        GoodGameplay().createDisplayWord(GlobalVariables.word)
+        
+        let displayWord = GoodGameplay().initPlay()
+        wordDisplay.text = displayWord
     }
+/*
     
     // verify user keyboard input (GL)
     @IBAction func verifyLetterButton(sender: AnyObject) {
-        let input = letterInput.text!
-        GlobalVariables.letter = input.uppercaseString
-        GoodGameplay().playTurn(GlobalVariables.letter, word: GlobalVariables.word)
+
+        let letter = letterInput.text!.uppercaseString
+        let displayWord = GoodGameplay().playTurn(letter)
+        wordDisplay.text = displayWord
+        
         letterInput.text = ""
     }
-    
+*/
     // letter button input
     @IBAction func alphabetButtons(sender: UIButton) {
-        let value: String = sender.restorationIdentifier!
-        GlobalVariables.letter = value
-        GoodGameplay().playTurn(GlobalVariables.letter, word: GlobalVariables.word)
-        sender.backgroundColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1.0)
-        sender.setTitleColor(UIColor.redColor(), forState: UIControlState.Normal)
-        sender.enabled = false
+        
+        let (mode, _, _) = Settings().loadSettings()
+        
+        if (mode == true) {
+            let letter: String = sender.restorationIdentifier!
+            GlobalVariables.letter = letter
+            EvilGameplay().countOccurences()
+            
+            sender.backgroundColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1.0)
+            sender.setTitleColor(UIColor.redColor(), forState: UIControlState.Normal)
+            sender.enabled = false
+            
+        } else {
+        
+            let letter: String = sender.restorationIdentifier!
+            let (displayWord, correct) = GoodGameplay().playTurn(letter)
+            wordDisplay.text = displayWord
+        
+            sender.backgroundColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1.0)
+            sender.setTitleColor(UIColor.redColor(), forState: UIControlState.Normal)
+            sender.enabled = false
+        
+            if correct == false {
+                changeImage()
+            }
+        }
     }
     
     // view init
@@ -73,8 +100,6 @@ class ViewController: UIViewController {
         
         bladeSound = setupAudioPlayerWithFile("BladeDrag", type:"aif")
         chopSound = setupAudioPlayerWithFile("BladeChop", type:"aif")
-        
-        
         
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -88,7 +113,7 @@ class ViewController: UIViewController {
     func setupAudioPlayerWithFile(file:NSString, type:NSString) -> AVAudioPlayer?  {
         // setup path
         let path = NSBundle.mainBundle().pathForResource(file as String, ofType: type as String)
-//        print("\(path)")
+
         let url = NSURL.fileURLWithPath(path!)
         
         var audioPlayer:AVAudioPlayer?

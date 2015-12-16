@@ -10,18 +10,70 @@ import UIKit
 
 class GoodGameplay {
     
+    var word : String = GlobalVariables.word
+    var displayWord : String = GlobalVariables.displayWord
+    
     // Load plist file (wordlist) into array
     var wordList : NSArray = NSArray(contentsOfFile: NSBundle.mainBundle().pathForResource("words", ofType: "plist")!)!
     
-    // print contents of wordlist
-    func printListContents() {
-        
-        for (index, element) in wordList.enumerate() {
-            print("Item \(index): \(element)")
-        }
-        print("Length of List: \(wordList.count)")
+    // pick word, return display word
+    func initPlay() -> String {
+        word = pickRandomWord()
+        GlobalVariables.word = word                         // update global
+        displayWord = createDisplayWord(word)
+        GlobalVariables.displayWord = displayWord           // update global
+        return displayWord
     }
     
+    
+    func playTurn(letter: String) -> (displayWord: String, correct:Bool) {
+        let correct : Bool
+        if memberOfWord(letter, word: word) == true {
+            updateDisplayWord(positionInWord(letter, word: word), letter: letter)
+            correct = true
+        } else {
+            print("\(letter) not in word")
+            correct = false
+            GlobalVariables.numberOfTurns = GlobalVariables.numberOfTurns - 1
+        }
+        GlobalVariables.displayWord = displayWord           // update global
+        winCheck()
+        return (displayWord, correct)
+    }
+    
+    func winCheck() {
+        if word == displayWord {
+            print("win")
+        } else {
+            if GlobalVariables.numberOfTurns == 1 {
+                print("lose")
+            }
+        }
+    }
+    
+    // create visible word
+    func createDisplayWord(word: NSString) -> String {
+        displayWord = ""        // reset
+        var index = 0
+        while index < word.length {
+            displayWord = displayWord + "-"
+            index++
+        }
+        print(displayWord)
+        return displayWord
+    }
+    
+    // update visible word
+    func updateDisplayWord(positions: [Int], letter: String) -> String {
+        for position in positions {
+            displayWord.replaceRange(displayWord.startIndex.advancedBy(
+                position)..<displayWord.startIndex.advancedBy(position + 1),
+                with: letter)
+        }
+        print(displayWord)
+        return displayWord
+    }
+
     // pick random word from wordlist
     func pickRandomWord() -> String {
         let randomIndex = Int(arc4random_uniform(UInt32(wordList.count)))
@@ -56,32 +108,13 @@ class GoodGameplay {
         return positions
     }
     
-    // create visible word
-    func createDisplayWord(word: NSString) {
-        GlobalVariables.displayWord = ""        // reset
-        var index = 0
-        while index < word.length {
-            GlobalVariables.displayWord = GlobalVariables.displayWord + "_"
-            index++
+    // print contents of wordlist
+    func printListContents() {
+        
+        for (index, element) in wordList.enumerate() {
+            print("Item \(index): \(element)")
         }
-        print(GlobalVariables.displayWord)
+        print("Length of List: \(wordList.count)")
     }
-    
-    // update visible word
-    func updateDisplayWord(positions: [Int]) {
-        for position in positions {
-            GlobalVariables.displayWord.replaceRange(GlobalVariables.displayWord.startIndex.advancedBy(
-                position)..<GlobalVariables.displayWord.startIndex.advancedBy(position + 1),
-                with: GlobalVariables.letter)
-        }
-        print(GlobalVariables.displayWord)
-    }
-    
-    func playTurn(letter: String, word: NSString) {
-        if memberOfWord(letter, word: word) == true {
-            updateDisplayWord(positionInWord(letter, word: word))
-        } else {
-            print("\(GlobalVariables.letter) not in word")
-        }
-    }
+
 }

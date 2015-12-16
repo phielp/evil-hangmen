@@ -23,8 +23,58 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <animations/>
                             </imageView>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="1" maxValue="24" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qeW-BQ-3FI">
+                                <rect key="frame" x="86" y="73" width="118" height="31"/>
+                                <animations/>
+                                <connections>
+                                    <action selector="Slider1Moved:" destination="p0g-Xk-uEh" eventType="valueChanged" id="mye-vc-ZaV"/>
+                                </connections>
+                            </slider>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="1" maxValue="26" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KCk-1b-rIX">
+                                <rect key="frame" x="86" y="137" width="118" height="31"/>
+                                <animations/>
+                                <connections>
+                                    <action selector="Slider2Moved:" destination="p0g-Xk-uEh" eventType="valueChanged" id="N9h-x7-rKa"/>
+                                </connections>
+                            </slider>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cqw-Do-seQ">
+                                <rect key="frame" x="88" y="202" width="51" height="31"/>
+                                <animations/>
+                                <connections>
+                                    <action selector="Switch:" destination="p0g-Xk-uEh" eventType="valueChanged" id="Yu4-tN-Osh"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6GY-HF-Day">
+                                <rect key="frame" x="265" y="87" width="70" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Te-bf-PfL">
+                                <rect key="frame" x="265" y="146" width="70" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Evil" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SES-Gf-ACJ">
+                                <rect key="frame" x="265" y="212" width="70" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CUQ-li-n5t">
+                                <rect key="frame" x="96" y="285" width="31" height="30"/>
+                                <animations/>
+                                <state key="normal" title="New"/>
+                                <connections>
+                                    <action selector="NewGame:" destination="p0g-Xk-uEh" eventType="touchUpInside" id="jtH-JY-foz"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="id6-7d-sY1">
-                                <rect key="frame" x="283" y="285" width="34" height="30"/>
+                                <rect key="frame" x="265" y="285" width="34" height="30"/>
                                 <animations/>
                                 <state key="normal" title="Back"/>
                                 <connections>
@@ -41,6 +91,14 @@
                             <constraint firstItem="VIc-XI-J0D" firstAttribute="leading" secondItem="e8i-kF-cP9" secondAttribute="leadingMargin" constant="-20" id="aQl-9b-SuO"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="Label1" destination="6GY-HF-Day" id="gyr-AB-lOH"/>
+                        <outlet property="Label2" destination="3Te-bf-PfL" id="zH5-wK-Wvf"/>
+                        <outlet property="Label3" destination="SES-Gf-ACJ" id="GvR-f4-szb"/>
+                        <outlet property="Slider1" destination="qeW-BQ-3FI" id="jgJ-o5-4oI"/>
+                        <outlet property="Slider2" destination="KCk-1b-rIX" id="9DP-62-fGs"/>
+                        <outlet property="Switch" destination="Cqw-Do-seQ" id="QpC-0K-tEj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jji-hw-XnM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -474,6 +532,13 @@
                                     <constraint firstAttribute="height" constant="30" id="61n-gP-FfH"/>
                                 </constraints>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wSq-21-yJX">
+                                <rect key="frame" x="20" y="64" width="560" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -497,6 +562,7 @@
                     <connections>
                         <outlet property="imageView" destination="Ytd-c6-YWp" id="IIn-Ay-POv"/>
                         <outlet property="letterInput" destination="gyt-Y3-gtC" id="ZJv-tp-pZ0"/>
+                        <outlet property="wordDisplay" destination="wSq-21-yJX" id="XNp-lF-o3F"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
