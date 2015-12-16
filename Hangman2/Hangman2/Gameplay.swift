@@ -8,45 +8,40 @@
 
 import UIKit
 
-protocol Gameplay {
+class GamePlay {
     
-//    var letter : String { get }
-//    var word : NSString { get set }
-//    var displayWord : String { get set }
+    var displayWord : String = GlobalVariables.displayWord
+    var wordList : NSArray = NSArray(contentsOfFile: NSBundle.mainBundle().pathForResource("words", ofType: "plist")!)!
     
-    var wordList : NSArray { get }
-    
-    func printListContents()
-    
-    func pickRandomWord() -> String
-    
-    func memberOfWord(letter: String, word: NSString) -> Bool
-    
-    func positionInWord(letter: String, word: NSString) -> [Int]
-    
-    func createDisplayWord(word: NSString)
-    
-    func updateDisplayWord(positions: [Int])
-    
-    func playTurn(letter: String, word: NSString)
-    
-    
-    // SHARED FUNCTIONS
-    
-    // load in the wordlist from a plist file into an array
-    func loadWordList() -> NSArray
-    
-    // handle a turn after the user guessed a letter
-    // true = evil, false = normal
-    func playTurn(mode: Bool)
-    
-    // check if the game is over after the turn has been played
-    // true = win, false = lose
-    func winCheck() -> Bool
-    
-    // reset all functions, buttons, views
-    func initPlay()
-    
-    
-}
+    // get word length
+    func WordLength() -> Int {
+        let index = Settings().loadSettings()
+        return index.wordLength
+    }
 
+    // generate wordlist of all words with length n
+    func generateWordListN() {
+        GlobalVariables.wordListN = []
+        for (_, element) in wordList.enumerate() {
+            let elementString = String(element)
+            let length = WordLength()
+            if (elementString.characters.count == length) {
+                GlobalVariables.wordListN.append(elementString)
+            }
+        }
+    }
+    
+    // create visible word
+    func createDisplayWord() -> String {
+        displayWord = ""        // reset
+        var index = 0
+        let length = WordLength()
+        while index < length {
+            displayWord = displayWord + "-"
+            index++
+        }
+        print(displayWord)
+        GlobalVariables.displayWord = displayWord
+        return displayWord
+    }
+}

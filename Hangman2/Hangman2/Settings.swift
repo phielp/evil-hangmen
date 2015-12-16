@@ -39,7 +39,7 @@ class Settings {
         let numberOfGuesses = defaults.valueForKey("numberOfGuesses") as? Int
         
         if (mode != nil && wordLength != nil && numberOfGuesses != nil) {
-            return (mode: mode!, wordLength: wordLength!, numberOfGuesses: numberOfGuesses!)
+            return (mode: mode!, wordLength: wordLength! - 1, numberOfGuesses: numberOfGuesses! - 1)
         } else {
             return (true, 1, 1)
         }

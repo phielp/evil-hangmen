@@ -12,8 +12,10 @@ import Foundation
 class EvilGameplay {
     
     var wordLengths : [Int] = []
-    var wordLength = GlobalVariables.wordLength
-//    var wordListN : [String] = []
+    var wordLength = GamePlay().WordLength()
+    //    var wordListN : [String] = []
+    
+    var displayWord : String = GlobalVariables.displayWord
     
     var listWithLetter : [String] = []
     var listWithoutLetter : [String] = []
@@ -21,41 +23,15 @@ class EvilGameplay {
     var wordList : NSArray = NSArray(contentsOfFile: NSBundle.mainBundle().pathForResource("words", ofType: "plist")!)!
     
     func testEvil() {
-        getWordLengths()
-        randomWordLength()
-        generateWordListN()
+        GamePlay().generateWordListN()
         print("wordLIstN1: \(GlobalVariables.wordListN)")
     }
 
-    // generate array of all possible number of characters in words
-    func getWordLengths() {
-        for (_, element) in wordList.enumerate() {
-            let elementString = String(element)
-            let length = elementString.characters.count
-            wordLengths.append(length)
-        }
-        wordLengths = Array(Set(wordLengths))
-        wordLengths.sortInPlace()
-        print(wordLengths)
+    func playTurn() {
+        countOccurences()
+        
     }
-    
-    // pick random length
-    func randomWordLength() {
-        let randomIndex = Int(arc4random_uniform(UInt32(wordLengths.count)))
-        GlobalVariables.wordLength = wordLengths[randomIndex]
-    }
-    
-    // generate wordlist of all words with length n
-    func generateWordListN() {
-        GlobalVariables.wordListN = []
-        for (_, element) in wordList.enumerate() {
-            let elementString = String(element)
-            if (elementString.characters.count == GlobalVariables.wordLength) {
-                GlobalVariables.wordListN.append(elementString)
-            }
-        }
-    }
-    
+
     // check if letter is in word
     func memberOfWord(letter: String, word: String) -> Bool {
         
@@ -64,6 +40,18 @@ class EvilGameplay {
         } else {
             return false
         }
+    }
+    
+    // create visible word
+    func createDisplayWord() -> String {
+        displayWord = ""        // reset
+        var index = 0
+        while index < wordLength {
+            displayWord = displayWord + "-"
+            index++
+        }
+        print(displayWord)
+        return displayWord
     }
     
     // generate two arrays: words with letter and words without letter
@@ -81,31 +69,41 @@ class EvilGameplay {
         print("Without: \(listWithoutLetter)")
         if (listWithLetter.count > listWithoutLetter.count) {
             GlobalVariables.wordListN = listWithLetter
-//            print("wordLIstN2: \(GlobalVariables.wordListN)")
+
             print("WITH: \(GlobalVariables.wordListN.count)")
             
             mostCommonPos(GlobalVariables.wordListN, letter: Character(GlobalVariables.letter))
             
+            
+            
         } else if (listWithLetter.count < listWithoutLetter.count) {
             GlobalVariables.wordListN = listWithoutLetter
-//            print("wordLIstN3: \(GlobalVariables.wordListN)")
+
             print("WITHOUT: \(GlobalVariables.wordListN.count)")
         } else {
             print("same length!")
             GlobalVariables.wordListN = listWithoutLetter
-            //            print("wordLIstN3: \(GlobalVariables.wordListN)")
+
             print("WITHOUT: \(GlobalVariables.wordListN.count)")
         }
         
+        if listWithoutLetter.count == 0 && listWithLetter.count == 1 {
+            print("final word, switch to good mode")
+        }
     }
     
+    
+    // calculates the most appearing position of a letter in wordlist
+    //
     func mostCommonPos(list: [String], letter: Character) {
         var commonPos: Array<NSObject> = []
         
+        // get all letter positions of all words
         for (_,word) in list.enumerate() {
             var positions : [Int] = []
             var index = word.startIndex
             var count = 0
+
             while count < wordLength {
                 if word[index] == letter {
                     positions.append(count)
@@ -116,8 +114,8 @@ class EvilGameplay {
             }
             commonPos.append(positions)
         }
-        print(commonPos)
         
+        // find most common letter position
         var index = 0
         var common: NSObject = []
         for (element, key) in freq(commonPos) {
@@ -128,6 +126,8 @@ class EvilGameplay {
             
         }
         print(common)
+
+        // get all words with most common letter position
         var count = 0
         var returnList: [String] = []
         for (element) in commonPos {
@@ -138,9 +138,9 @@ class EvilGameplay {
         }
         print(returnList)
         GlobalVariables.wordListN = returnList
- 
     }
     
+    // count occurences of objects
     func freq<S: SequenceType where S.Generator.Element: Hashable>(seq: S) -> [S.Generator.Element:Int] {
         
         return seq.reduce([:]) {
@@ -148,10 +148,6 @@ class EvilGameplay {
             (var accu: [S.Generator.Element:Int], element) in
             accu[element] = accu[element]?.successor() ?? 1
             return accu
-            
         }
     }
-    
-    
-    
 }

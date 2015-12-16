@@ -30,6 +30,8 @@ class ViewController: UIViewController {
     // test evil gameplay (EW)
     @IBAction func evilGamePlay(sender: AnyObject) {
         EvilGameplay().testEvil()
+        let displayWord = GamePlay().createDisplayWord()
+        wordDisplay.text = displayWord
     }
     
     // check evil letter (EL)
@@ -42,7 +44,7 @@ class ViewController: UIViewController {
     // test animation button (PIC)
     @IBAction func startAnimation(sender: AnyObject) {
         changeImage()
-        GlobalVariables.numberOfTurns = GlobalVariables.numberOfTurns - 1
+        GlobalVariables.numberOfTurns = GlobalVariables.numberOfTurns
     }
     
     // generate random word good gameplay (GW)
@@ -51,18 +53,7 @@ class ViewController: UIViewController {
         let displayWord = GoodGameplay().initPlay()
         wordDisplay.text = displayWord
     }
-/*
-    
-    // verify user keyboard input (GL)
-    @IBAction func verifyLetterButton(sender: AnyObject) {
 
-        let letter = letterInput.text!.uppercaseString
-        let displayWord = GoodGameplay().playTurn(letter)
-        wordDisplay.text = displayWord
-        
-        letterInput.text = ""
-    }
-*/
     // letter button input
     @IBAction func alphabetButtons(sender: UIButton) {
         
@@ -71,7 +62,7 @@ class ViewController: UIViewController {
         if (mode == true) {
             let letter: String = sender.restorationIdentifier!
             GlobalVariables.letter = letter
-            EvilGameplay().countOccurences()
+            EvilGameplay().playTurn()
             
             sender.backgroundColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1.0)
             sender.setTitleColor(UIColor.redColor(), forState: UIControlState.Normal)

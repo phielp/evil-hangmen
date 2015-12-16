@@ -35,7 +35,7 @@
 		F7B771321C0D99D6002B6681 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7B771311C0D99D6002B6681 /* SecondViewController.swift */; };
 		F7B771341C0D9A0B002B6681 /* GoodGameplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7B771331C0D9A0B002B6681 /* GoodGameplay.swift */; };
 		F7B771361C0D9A37002B6681 /* EvilGameplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7B771351C0D9A37002B6681 /* EvilGameplay.swift */; };
-		F7B771381C0D9A54002B6681 /* Gameplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7B771371C0D9A54002B6681 /* Gameplay.swift */; };
+		F7B771381C0D9A54002B6681 /* GamePlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7B771371C0D9A54002B6681 /* GamePlay.swift */; };
 		F7B7713B1C0D9F29002B6681 /* small.plist in Resources */ = {isa = PBXBuildFile; fileRef = F7B771391C0D9F29002B6681 /* small.plist */; };
 		F7B7713C1C0D9F29002B6681 /* words.plist in Resources */ = {isa = PBXBuildFile; fileRef = F7B7713A1C0D9F29002B6681 /* words.plist */; };
 		F7F779E21C0F1D78008BC010 /* Guillotine Empty Cropped.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F7F779E11C0F1D78008BC010 /* Guillotine Empty Cropped.jpg */; };
@@ -100,7 +100,7 @@
 		F7B771311C0D99D6002B6681 /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		F7B771331C0D9A0B002B6681 /* GoodGameplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoodGameplay.swift; sourceTree = "<group>"; };
 		F7B771351C0D9A37002B6681 /* EvilGameplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvilGameplay.swift; sourceTree = "<group>"; };
-		F7B771371C0D9A54002B6681 /* Gameplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gameplay.swift; sourceTree = "<group>"; };
+		F7B771371C0D9A54002B6681 /* GamePlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamePlay.swift; sourceTree = "<group>"; };
 		F7B771391C0D9F29002B6681 /* small.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = small.plist; path = Media/Files/small.plist; sourceTree = "<group>"; };
 		F7B7713A1C0D9F29002B6681 /* words.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = words.plist; path = Media/Files/words.plist; sourceTree = "<group>"; };
 		F7F779E11C0F1D78008BC010 /* Guillotine Empty Cropped.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Guillotine Empty Cropped.jpg"; path = "Media/Images/Guillotine Empty Cropped.jpg"; sourceTree = "<group>"; };
@@ -173,12 +173,12 @@
 			children = (
 				F7B771031C0D99A0002B6681 /* AppDelegate.swift */,
 				F7B771051C0D99A0002B6681 /* ViewController.swift */,
+				F7B771311C0D99D6002B6681 /* SecondViewController.swift */,
+				F7B771371C0D9A54002B6681 /* GamePlay.swift */,
 				F7B771331C0D9A0B002B6681 /* GoodGameplay.swift */,
 				F7B771351C0D9A37002B6681 /* EvilGameplay.swift */,
 				F736DEB21C1B1062006E5BED /* Settings.swift */,
 				F7F77A221C0F42DE008BC010 /* GlobalVariables.swift */,
-				F7B771311C0D99D6002B6681 /* SecondViewController.swift */,
-				F7B771371C0D9A54002B6681 /* Gameplay.swift */,
 				F7B771071C0D99A0002B6681 /* Main.storyboard */,
 				F7B7710A1C0D99A0002B6681 /* Assets.xcassets */,
 				F7B7710C1C0D99A0002B6681 /* LaunchScreen.storyboard */,
@@ -415,7 +415,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F7B771321C0D99D6002B6681 /* SecondViewController.swift in Sources */,
-				F7B771381C0D9A54002B6681 /* Gameplay.swift in Sources */,
+				F7B771381C0D9A54002B6681 /* GamePlay.swift in Sources */,
 				F736DEB31C1B1062006E5BED /* Settings.swift in Sources */,
 				F7B771061C0D99A0002B6681 /* ViewController.swift in Sources */,
 				F7B771341C0D9A0B002B6681 /* GoodGameplay.swift in Sources */,
