@@ -20,11 +20,9 @@ class EvilGameplay {
     var listWithLetter : [String] = []
     var listWithoutLetter : [String] = []
     
-    var wordList : NSArray = NSArray(contentsOfFile: NSBundle.mainBundle().pathForResource("words", ofType: "plist")!)!
-    
-    func testEvil() {
+    // set up Evil Game
+    func initPlay() {
         GamePlay().generateWordListN()
-        print("wordLIstN1: \(GlobalVariables.wordListN)")
     }
 
     // check if letter is in word
@@ -48,8 +46,6 @@ class EvilGameplay {
                 listWithoutLetter.append(element)
             }
         }
-        print("With: \(listWithLetter)")
-        print("Without: \(listWithoutLetter)")
         if (listWithLetter.count > listWithoutLetter.count) {
             GlobalVariables.wordListN = listWithLetter
             
@@ -70,7 +66,7 @@ class EvilGameplay {
         }
         
         if listWithoutLetter.count == 0 && listWithLetter.count == 1 {
-            
+            print("win")
         }
         return (displayWord, correct)
     }
@@ -105,8 +101,7 @@ class EvilGameplay {
             if key > index {
                 index = key
                 common = element
-            }
-            
+            } 
         }
 
         // get all words with most common letter position
@@ -118,7 +113,6 @@ class EvilGameplay {
             }
             count++
         }
-        print(returnList)
         GlobalVariables.wordListN = returnList
         
         return common as! [Int]

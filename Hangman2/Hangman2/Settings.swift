@@ -1,7 +1,7 @@
 //
 //  Settings.swift
 //  
-//  Functions to store and retriev NSUser Data
+//  Functions to store and retrieve NSUser Data
 //
 //  Created by Philip Bouman on 11-12-15.
 //  Copyright © 2015 Philip Bouman. All rights reserved.
@@ -40,9 +40,16 @@ class Settings {
         let numberOfGuesses = defaults.valueForKey("numberOfGuesses") as? Int
         
         if (mode != nil && wordLength != nil && numberOfGuesses != nil) {
-            return (mode: mode!, wordLength: wordLength! - 1, numberOfGuesses: numberOfGuesses! - 1)
+            return (mode: mode!, wordLength: wordLength!, numberOfGuesses: numberOfGuesses! - 1)
         } else {
             return (true, 1, 1)
         }
+    }
+    
+    // save score
+    func highscores(score: String) {
+        let defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        defaults.setObject(score, forKey: "highscores")
+        defaults.synchronize()
     }
 }

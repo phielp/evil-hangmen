@@ -18,7 +18,6 @@ class GamePlay {
     func WordLength() -> Int {
         let index = Settings().loadSettings()
         return index.wordLength
-        
     }
 
     // generate wordlist of all words with length n
@@ -42,7 +41,6 @@ class GamePlay {
             displayWord = displayWord + "-"
             index++
         }
-        print(displayWord)
         GlobalVariables.displayWord = displayWord
         return displayWord
     }
@@ -54,7 +52,6 @@ class GamePlay {
                 position)..<displayWord.startIndex.advancedBy(position + 1),
                 with: letter)
         }
-        print(displayWord)
         return displayWord
     }
 }

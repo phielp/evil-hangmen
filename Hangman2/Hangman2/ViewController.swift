@@ -1,6 +1,7 @@
 //
 //  ViewController.swift
-//  Hangman2
+//  
+//  Main View
 //
 //  Created by Philip Bouman on 01-12-15.
 //  Copyright © 2015 Philip Bouman. All rights reserved.
@@ -21,44 +22,15 @@ class ViewController: UIViewController {
     var chopSound : AVAudioPlayer?
     
     //OUTLETS\\
-    @IBOutlet weak var letterInput: UITextField!
-    
     @IBOutlet weak var imageView: UIImageView!
-    
     @IBOutlet weak var wordDisplay: UILabel!
     
-    // test evil gameplay (EW)
-    @IBAction func evilGamePlay(sender: AnyObject) {
-        EvilGameplay().testEvil()
-        let displayWord = GamePlay().createDisplayWord()
-        wordDisplay.text = displayWord
-    }
-    
-    // check evil letter (EL)
-    @IBAction func checkLetter(sender: AnyObject) {
-        let input = letterInput.text!
-        GlobalVariables.letter = input.uppercaseString
-        EvilGameplay().playTurn()
-    }
-    
-    // test animation button (PIC)
-    @IBAction func startAnimation(sender: AnyObject) {
-        changeImage()
-        GlobalVariables.numberOfTurns = GlobalVariables.numberOfTurns
-    }
-    
-    // generate random word good gameplay (GW)
-    @IBAction func randomWordButton(sender: AnyObject) {
-        
-        let displayWord = GoodGameplay().initPlay()
-        wordDisplay.text = displayWord
-    }
-
-    // letter button input
+    // letter button input. Handles a game turn with chosen letter
     @IBAction func alphabetButtons(sender: UIButton) {
         
         let (mode, _, _) = Settings().loadSettings()
         
+        // evil mode
         if (mode == true) {
             let letter: String = sender.restorationIdentifier!
             GlobalVariables.letter = letter
@@ -69,9 +41,12 @@ class ViewController: UIViewController {
             sender.setTitleColor(UIColor.redColor(), forState: UIControlState.Normal)
             sender.enabled = false
             
+            // update image
             if correct == false {
                 changeImage()
             }
+            
+        // good mode
         } else {
         
             let letter: String = sender.restorationIdentifier!
@@ -82,30 +57,22 @@ class ViewController: UIViewController {
             sender.setTitleColor(UIColor.redColor(), forState: UIControlState.Normal)
             sender.enabled = false
         
+            // update image
             if correct == false {
                 changeImage()
             }
         }
     }
     
-
-    
     // view init
     override func viewDidLoad() {
 
         super.viewDidLoad()
         
-        wordDisplay.text = GlobalVariables.displayWord
-        
         bladeSound = setupAudioPlayerWithFile("BladeDrag", type:"aif")
         chopSound = setupAudioPlayerWithFile("BladeChop", type:"aif")
-        
-        // Do any additional setup after loading the view, typically from a nib.
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+
+        wordDisplay.text = GlobalVariables.displayWord
     }
     
     // Setup audioplayer and load files
@@ -177,4 +144,3 @@ class ViewController: UIViewController {
         }
     }
 }
-

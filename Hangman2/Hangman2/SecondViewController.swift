@@ -1,6 +1,7 @@
 //
 //  SecondViewController.swift
-//  Hangman2
+//  
+//  Settings View
 //
 //  Created by Philip Bouman on 01-12-15.
 //  Copyright © 2015 Philip Bouman. All rights reserved.
@@ -14,30 +15,26 @@ class SecondViewController: UIViewController {
     var wordLength: Int = 1
     var numberOfGuesses: Int = 1
     
+    //OUTLETS\\
     @IBOutlet weak var Slider1: UISlider!
-
     @IBOutlet weak var Label1: UILabel!
-
     @IBOutlet weak var Slider2: UISlider!
-    
     @IBOutlet weak var Label2: UILabel!
-    
     @IBOutlet weak var Switch: UISwitch!
-    
     @IBOutlet weak var Label3: UILabel!
     
+    // Start a new game
     @IBAction func NewGame(sender: AnyObject) {
         
         if Switch.on == true {
-            EvilGameplay().testEvil()
-            let displayWord = GamePlay().createDisplayWord()
-            ViewController().wordDisplay.text = displayWord
+            EvilGameplay().initPlay()
+            GamePlay().createDisplayWord()
         } else {
-            let displayWord = GoodGameplay().initPlay()
-            ViewController().wordDisplay.text = displayWord
+            GoodGameplay().initPlay()
         }
     }
     
+    // WordLength Slider
     @IBAction func Slider1Moved(sender: UISlider) {
         let interval = 1
         let step = Int(sender.value / Float(interval) ) * interval
@@ -47,6 +44,7 @@ class SecondViewController: UIViewController {
         Settings().wordLength(wordLength)
     }
     
+    // Number of turns Slider
     @IBAction func Slider2Moved(sender: UISlider) {
         let interval = 1
         let step = Int(sender.value / Float(interval) ) * interval
@@ -56,6 +54,7 @@ class SecondViewController: UIViewController {
         Settings().numberOfGuesses(numberOfGuesses)
     }
     
+    // Evil or good mode switch
     @IBAction func Switch(sender: AnyObject) {
         
         if Switch.on == true {
@@ -67,6 +66,12 @@ class SecondViewController: UIViewController {
             mode = false
             Settings().mode(mode)
         }
+    }
+    
+    // load view
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        loadSettings()
     }
     
     // load in current settings
@@ -83,16 +88,5 @@ class SecondViewController: UIViewController {
             Label3.text = "Good"
             Switch.setOn(false, animated: true)
         }
-    }
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        loadSettings()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }

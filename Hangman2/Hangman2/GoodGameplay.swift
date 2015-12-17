@@ -34,7 +34,6 @@ class GoodGameplay {
             updateDisplayWord(positionInWord(letter, word: word), letter: letter)
             correct = true
         } else {
-            print("\(letter) not in word")
             correct = false
             GlobalVariables.numberOfTurns = GlobalVariables.numberOfTurns - 1
         }
@@ -62,7 +61,6 @@ class GoodGameplay {
             displayWord = displayWord + "-"
             index++
         }
-        print(displayWord)
         return displayWord
     }
     
@@ -73,7 +71,6 @@ class GoodGameplay {
                 position)..<displayWord.startIndex.advancedBy(position + 1),
                 with: letter)
         }
-        print(displayWord)
         return displayWord
     }
 
@@ -81,7 +78,6 @@ class GoodGameplay {
     func pickRandomWord() -> String {
         let randomIndex = Int(arc4random_uniform(UInt32(wordList.count)))
         let randomWord = wordList[randomIndex]
-        print("Random \(randomIndex): \(randomWord)")
         return randomWord as! String
     }
     
