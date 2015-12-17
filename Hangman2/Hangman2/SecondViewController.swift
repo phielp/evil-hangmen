@@ -28,6 +28,14 @@ class SecondViewController: UIViewController {
     
     @IBAction func NewGame(sender: AnyObject) {
         
+        if Switch.on == true {
+            EvilGameplay().testEvil()
+            let displayWord = GamePlay().createDisplayWord()
+            ViewController().wordDisplay.text = displayWord
+        } else {
+            let displayWord = GoodGameplay().initPlay()
+            ViewController().wordDisplay.text = displayWord
+        }
     }
     
     @IBAction func Slider1Moved(sender: UISlider) {
@@ -61,6 +69,7 @@ class SecondViewController: UIViewController {
         }
     }
     
+    // load in current settings
     func loadSettings() {
         (mode, wordLength, numberOfGuesses) = Settings().loadSettings()
         Label1.text = "\(wordLength)"

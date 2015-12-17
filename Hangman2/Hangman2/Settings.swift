@@ -1,6 +1,7 @@
 //
 //  Settings.swift
-//  Grammar Guillotine
+//  
+//  Functions to store and retriev NSUser Data
 //
 //  Created by Philip Bouman on 11-12-15.
 //  Copyright © 2015 Philip Bouman. All rights reserved.

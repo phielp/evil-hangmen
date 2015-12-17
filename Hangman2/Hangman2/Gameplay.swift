@@ -1,6 +1,7 @@
 //
-//  Gameplay.swift
-//  Hangman2
+//  GamePlay.swift
+//
+//  Handles all shared functions between Evil and Good mode
 //
 //  Created by Philip Bouman on 01-12-15.
 //  Copyright © 2015 Philip Bouman. All rights reserved.
@@ -17,6 +18,7 @@ class GamePlay {
     func WordLength() -> Int {
         let index = Settings().loadSettings()
         return index.wordLength
+        
     }
 
     // generate wordlist of all words with length n
@@ -42,6 +44,17 @@ class GamePlay {
         }
         print(displayWord)
         GlobalVariables.displayWord = displayWord
+        return displayWord
+    }
+    
+    // update visible word
+    func updateDisplayWord(positions: [Int], letter: String) -> String {
+        for position in positions {
+            displayWord.replaceRange(displayWord.startIndex.advancedBy(
+                position)..<displayWord.startIndex.advancedBy(position + 1),
+                with: letter)
+        }
+        print(displayWord)
         return displayWord
     }
 }

@@ -1,6 +1,7 @@
 //
 //  GoodGameplay.swift
-//  Hangman2
+//
+//  Handles Good gameplay
 //
 //  Created by Philip Bouman on 01-12-15.
 //  Copyright © 2015 Philip Bouman. All rights reserved.
@@ -25,7 +26,8 @@ class GoodGameplay {
         return displayWord
     }
     
-    
+    // check if letter is member, if so update the display word, else
+    // reduce the number of turns to play
     func playTurn(letter: String) -> (displayWord: String, correct:Bool) {
         let correct : Bool
         if memberOfWord(letter, word: word) == true {
@@ -41,6 +43,7 @@ class GoodGameplay {
         return (displayWord, correct)
     }
     
+    // check if word is guessed correctly
     func winCheck() {
         if word == displayWord {
             print("win")
@@ -116,5 +119,4 @@ class GoodGameplay {
         }
         print("Length of List: \(wordList.count)")
     }
-
 }

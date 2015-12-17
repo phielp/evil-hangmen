@@ -1,6 +1,7 @@
 //
 //  GlobalVariables.swift
-//  Grammar Guillotine
+//  
+//  Used for shared variables
 //
 //  Created by Philip Bouman on 02-12-15.
 //  Copyright © 2015 Philip Bouman. All rights reserved.

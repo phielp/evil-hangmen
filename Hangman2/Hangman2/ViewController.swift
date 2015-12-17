@@ -38,7 +38,7 @@ class ViewController: UIViewController {
     @IBAction func checkLetter(sender: AnyObject) {
         let input = letterInput.text!
         GlobalVariables.letter = input.uppercaseString
-        EvilGameplay().countOccurences()
+        EvilGameplay().playTurn()
     }
     
     // test animation button (PIC)
@@ -62,12 +62,16 @@ class ViewController: UIViewController {
         if (mode == true) {
             let letter: String = sender.restorationIdentifier!
             GlobalVariables.letter = letter
-            EvilGameplay().playTurn()
+            let (displayWord, correct) = EvilGameplay().playTurn()
+            wordDisplay.text = displayWord
             
             sender.backgroundColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1.0)
             sender.setTitleColor(UIColor.redColor(), forState: UIControlState.Normal)
             sender.enabled = false
             
+            if correct == false {
+                changeImage()
+            }
         } else {
         
             let letter: String = sender.restorationIdentifier!
@@ -84,10 +88,14 @@ class ViewController: UIViewController {
         }
     }
     
+
+    
     // view init
     override func viewDidLoad() {
 
         super.viewDidLoad()
+        
+        wordDisplay.text = GlobalVariables.displayWord
         
         bladeSound = setupAudioPlayerWithFile("BladeDrag", type:"aif")
         chopSound = setupAudioPlayerWithFile("BladeChop", type:"aif")
