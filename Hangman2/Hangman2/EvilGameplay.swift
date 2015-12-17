@@ -119,6 +119,10 @@ class EvilGameplay {
     }
     
     // count occurences of objects
+    // source :http://stackoverflow.com/questions/30545518/how-to-
+    //      count-occurrences-of-an-element-in-a-swift-array
+    // will replace when enough time
+    
     func freq<S: SequenceType where S.Generator.Element: Hashable>(seq: S) -> [S.Generator.Element:Int] {
         
         return seq.reduce([:]) {
